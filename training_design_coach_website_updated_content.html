@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Design Coach - Đồng hành cùng Trainer</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #111827; 
+            background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0);
+            background-size: 2rem 2rem;
+        }
+        
+        /* HỆ THỐNG 3 KÍCH THƯỚC CHỮ */
+        .txt-1 { @apply text-4xl md:text-5xl font-black leading-tight; }
+        .txt-2 { @apply text-xl md:text-2xl font-bold leading-relaxed; }
+        .txt-3 { @apply text-base font-medium leading-relaxed; }
+
+        /* Tiêu đề & Phụ đề chung */
+        .section-title {
+            @apply txt-1 text-gray-900 text-center mb-6 tracking-tight;
+        }
+        .section-subtitle {
+            @apply txt-2 text-gray-600 text-center max-w-4xl mx-auto mb-16;
+        }
+        
+        .gradient-text {
+            @apply bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent;
+        }
+        .glass-card {
+            @apply bg-white/90 backdrop-blur-md border border-gray-200 rounded-3xl shadow-xl hover:shadow-yellow-500/15 transition-all duration-500;
+        }
+        .glow-on-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-on-hover:hover {
+            transform: translateY(-10px);
+            @apply border-yellow-400;
+            box-shadow: 0 15px 30px -5px rgba(234, 179, 8, 0.2);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { @apply bg-gray-50; }
+        ::-webkit-scrollbar-thumb { @apply bg-gray-300 rounded-full hover:bg-gray-400; }
+    </style>
+</head>
+<body class="selection:bg-yellow-400/30 selection:text-yellow-900">
+
+    <header class="bg-white/90 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex items-center justify-between">
+                <a href="#" class="txt-2 font-black text-gray-900 tracking-tighter uppercase">
+                    TRAINING <span class="gradient-text">COACH</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#needs" class="txt-3 text-gray-600 hover:text-yellow-600 transition duration-300 font-bold">Vấn đề</a>
+                    <a href="#solution" class="txt-3 text-gray-600 hover:text-yellow-600 transition duration-300 font-bold">Hệ thống</a>
+                    <a href="#deliverables" class="txt-3 text-gray-600 hover:text-yellow-600 transition duration-300 font-bold">Kết quả</a>
+                    <a href="#fit" class="txt-3 text-gray-600 hover:text-yellow-600 transition duration-300 font-bold">Độ phù hợp</a>
+                    <a href="#offers" class="txt-3 text-gray-600 hover:text-yellow-600 transition duration-300 font-bold">Báo giá</a>
+                </nav>
+                <a href="#contact" class="hidden md:inline-block bg-black text-white txt-3 font-bold px-8 py-3 rounded-full hover:bg-gray-800 transition-all duration-300 active:scale-95">
+                    Đặt buổi chẩn đoán
+                </a>
+                <button id="mobile-menu-button" class="lg:hidden text-gray-900">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pb-6 bg-white border-b border-gray-200 animate-in fade-in slide-in-from-top-4 duration-300 shadow-xl">
+            <a href="#needs" class="block py-4 txt-3 text-gray-700 font-bold hover:text-yellow-600">Vấn đề</a>
+            <a href="#solution" class="block py-4 txt-3 text-gray-700 font-bold hover:text-yellow-600">Hệ thống</a>
+            <a href="#deliverables" class="block py-4 txt-3 text-gray-700 font-bold hover:text-yellow-600">Kết quả</a>
+            <a href="#fit" class="block py-4 txt-3 text-gray-700 font-bold hover:text-yellow-600">Độ phù hợp</a>
+            <a href="#offers" class="block py-4 txt-3 text-gray-700 font-bold hover:text-yellow-600">Báo giá</a>
+            <a href="#contact" class="block mt-6 text-center bg-yellow-400 text-black font-bold txt-3 px-5 py-4 rounded-xl hover:bg-yellow-500">Đặt buổi chẩn đoán</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-28 pb-36 relative overflow-hidden bg-white">
+             <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-300/30 rounded-full blur-[100px] animate-pulse"></div>
+             <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-200/50 rounded-full blur-[100px] animate-pulse delay-700"></div>
+            
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <div data-aos="zoom-out" data-aos-duration="1000">
+                    <span class="inline-block px-5 py-2 mb-8 txt-3 tracking-widest text-yellow-800 uppercase bg-yellow-100 border border-yellow-200 rounded-full shadow-sm">
+                        Dành cho chuyên gia, trainer, coach, consultant & tổ chức đào tạo
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-[4.5rem] font-black text-gray-900 mb-6 leading-[1.3] tracking-tight">
+                        Biến Chuyên Môn Của Bạn Thành<br><span class="gradient-text">Chương Trình Đào Tạo Bài Bản</span>
+                    </h1>
+                    <p class="text-2xl md:text-3xl font-bold text-gray-700 max-w-5xl mx-auto leading-relaxed mb-6">
+                        Có thể bán, dạy và nhân bản trong 4–8 tuần
+                    </p>
+                    <p class="txt-3 text-gray-600 max-w-4xl mx-auto mb-10">
+                        Bạn có chuyên môn sâu, kinh nghiệm thực chiến và nhiều tri thức giá trị. Nhưng để biến chúng thành một chương trình đào tạo bài bản, bạn cần nhiều hơn một bộ slide.<br>
+                        Training Coach đồng hành cùng bạn từ khảo sát nhu cầu, thiết kế lộ trình học, xây giáo trình - slide - activity - assessment đến rehearsal và triển khai thực tế.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                        <a href="#contact" class="w-full sm:w-auto bg-yellow-400 text-black font-bold txt-3 px-10 py-5 rounded-2xl hover:bg-yellow-500 transition-all duration-300 shadow-xl shadow-yellow-400/30 hover:shadow-yellow-400/50 transform hover:-translate-y-1">
+                            ĐẶT BUỔI CHẨN ĐOÁN 30 PHÚT
+                        </a>
+                        <a href="#offers" class="w-full sm:w-auto bg-white border-2 border-gray-200 text-gray-800 font-bold txt-3 px-10 py-5 rounded-2xl hover:bg-gray-50 transition-all duration-300">
+                            XEM CÁC GÓI ĐỒNG HÀNH
+                        </a>
+                    </div>
+                    <p class="mt-6 text-sm text-gray-500 max-w-2xl mx-auto font-medium">
+                        * Phù hợp nếu bạn đã có chuyên môn, kinh nghiệm hoặc nội dung thô nhưng chưa có chương trình đào tạo bài bản.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="needs" class="py-32 bg-gray-50 relative border-t border-gray-100 overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10">
+                <div data-aos="fade-up" class="relative flex flex-col items-center text-center w-full">
+                    <div class="absolute -top-16 md:-top-24 left-1/2 -translate-x-1/2 text-[180px] md:text-[300px] text-yellow-400/20 font-serif leading-none z-0 select-none">"</div>
+                    
+                    <h2 class="text-4xl md:text-5xl lg:text-[4.5rem] font-black text-gray-900 relative z-10 w-full mb-12 tracking-tighter leading-[1.3]">
+                        Vấn Đề Của Chuyên Gia
+                    </h2>
+                    
+                    <div class="max-w-4xl mx-auto text-center relative z-10 px-4">
+                        <p class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 italic leading-snug md:leading-[1.6]">
+                            Bạn không thiếu <span class="text-yellow-600 font-black">chuyên môn</span>.<br class="hidden md:block">
+                            Bạn thiếu một <span class="bg-yellow-300 px-5 py-3 font-black text-gray-900 inline-block mt-4 md:mt-6 shadow-sm rounded-lg">hệ thống</span> để biến chuyên môn thành trải nghiệm học tập có kết quả.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-24 max-w-5xl mx-auto">
+                    <div class="glass-card p-10 glow-on-hover bg-white" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-yellow-100 text-yellow-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-yellow-200 shadow-sm">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-5 leading-snug">Chuyên môn rời rạc</h3>
+                        <p class="txt-3 text-gray-600">Bạn có nhiều kinh nghiệm nhưng chưa biết gom lại thành lộ trình học rõ ràng cho học viên.</p>
+                    </div>
+                    
+                    <div class="glass-card p-10 glow-on-hover border-black bg-gray-900" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-black text-yellow-400 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-gray-700 shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-black text-white mb-5 leading-snug">Làm slide mất nhiều thời gian</h3>
+                        <p class="txt-3 text-gray-400">Bạn tốn hàng tuần để làm tài liệu nhưng vẫn chưa chắc lớp học truyền tải hiệu quả.</p>
+                    </div>
+
+                    <div class="glass-card p-10 glow-on-hover bg-white" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gray-100 text-gray-900 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-gray-200">
+                           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-5 leading-snug">Dạy theo cảm hứng</h3>
+                        <p class="txt-3 text-gray-600">Mỗi lần dạy lại phải chuẩn bị lại từ đầu, khó bàn giao, khó nhân bản và khó scale quy mô.</p>
+                    </div>
+
+                    <div class="glass-card p-10 glow-on-hover bg-white" data-aos="fade-up" data-aos-delay="400">
+                        <div class="bg-gray-100 text-gray-900 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-gray-200">
+                           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-5 leading-snug">Offer đào tạo chưa đủ giá trị cao</h3>
+                        <p class="txt-3 text-gray-600">Khách hàng chưa thấy rõ đầu ra nên khó bán giá cao hoặc khó thuyết phục doanh nghiệp hợp tác.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-28 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-20">
+                    <div class="lg:w-[45%] relative" data-aos="fade-right">
+                        <div class="absolute -inset-4 bg-yellow-200/40 blur-3xl rounded-full"></div>
+                        <div class="bg-gray-900 rounded-[2.5rem] p-10 relative z-10 shadow-2xl border border-gray-800 h-full flex flex-col justify-center">
+                            <h3 class="text-3xl md:text-4xl font-black text-white mb-6 leading-snug">
+                                Một chương trình đào tạo tốt không bắt đầu từ slide.
+                            </h3>
+                            <p class="txt-2 text-yellow-400">
+                                Nó bắt đầu từ nhu cầu học viên, mục tiêu học tập và lộ trình chuyển hóa rõ ràng.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-[55%]" data-aos="fade-left">
+                        <span class="text-xl font-black text-yellow-600 tracking-widest uppercase bg-yellow-50 px-5 py-3 rounded-xl inline-block mb-6 shadow-sm border border-yellow-200">GIẢI PHÁP CỦA CHÚNG TÔI</span>
+                        <h2 class="text-4xl md:text-5xl lg:text-[4rem] font-black text-gray-900 mt-2 mb-12 text-left leading-[1.2]">
+                            Training Asset System
+                        </h2>
+                        
+                        <div class="space-y-10">
+                            <div class="flex items-start group">
+                                <div class="bg-yellow-100 text-yellow-600 font-black text-2xl w-14 h-14 rounded-2xl flex items-center justify-center mr-6 border border-yellow-200 shrink-0 group-hover:bg-yellow-400 group-hover:text-black transition-colors">1</div>
+                                <div>
+                                    <h4 class="txt-2 text-gray-900 mb-2">Phân tích nhu cầu học tập</h4>
+                                    <p class="txt-3 text-gray-600">Làm rõ đối tượng người học, vấn đề gặp phải, bối cảnh ứng dụng thực tế và khoảng cách năng lực cần lấp đầy.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start group">
+                                <div class="bg-yellow-100 text-yellow-600 font-black text-2xl w-14 h-14 rounded-2xl flex items-center justify-center mr-6 border border-yellow-200 shrink-0 group-hover:bg-yellow-400 group-hover:text-black transition-colors">2</div>
+                                <div>
+                                    <h4 class="txt-2 text-gray-900 mb-2">Thiết kế learning journey</h4>
+                                    <p class="txt-3 text-gray-600">Xây dựng mục tiêu học tập cốt lõi, chia module, bài học, thiết kế flow kiến thức và đan xen các hoạt động thực hành.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start group">
+                                <div class="bg-yellow-100 text-yellow-600 font-black text-2xl w-14 h-14 rounded-2xl flex items-center justify-center mr-6 border border-yellow-200 shrink-0 group-hover:bg-yellow-400 group-hover:text-black transition-colors">3</div>
+                                <div>
+                                    <h4 class="txt-2 text-gray-900 mb-2">Xây bộ tài sản đào tạo</h4>
+                                    <p class="txt-3 text-gray-600">Sản xuất Slide, giáo trình, worksheet, checklist, case study, bài test và tài liệu phát tay đồng bộ.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start group">
+                                <div class="bg-yellow-100 text-yellow-600 font-black text-2xl w-14 h-14 rounded-2xl flex items-center justify-center mr-6 border border-yellow-200 shrink-0 group-hover:bg-yellow-400 group-hover:text-black transition-colors">4</div>
+                                <div>
+                                    <h4 class="txt-2 text-gray-900 mb-2">Rehearsal & Triển khai</h4>
+                                    <p class="txt-3 text-gray-600">Coach kỹ năng đứng lớp, feedback tối ưu chương trình, setup quy trình vận hành và đo lường hiệu quả sau đào tạo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deliverables" class="py-28 bg-gray-50 border-y border-gray-200">
+            <div class="container mx-auto px-6">
+                <div data-aos="fade-up" class="text-center max-w-4xl mx-auto mb-16">
+                    <h2 class="text-4xl md:text-5xl lg:text-[4rem] font-black text-gray-900 mb-8 leading-[1.2]">
+                        Kết quả <span class="gradient-text">Thực Tế</span>
+                    </h2>
+                    <p class="txt-2 text-gray-700">
+                        Sau quá trình đồng hành, bạn không chỉ có <span class="bg-yellow-200 px-2">“một bộ slide”</span>. Bạn sở hữu một <strong>chương trình đào tạo hoàn chỉnh</strong>.
+                    </p>
+                </div>
+                
+                <div class="glass-card bg-white p-10 md:p-14 max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Bản đồ nhu cầu học viên và mục tiêu đào tạo</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Khung chương trình tổng thể (Master Outline)</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Outline chi tiết từng buổi / từng module</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Slide đào tạo hoàn chỉnh, chuyên nghiệp</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Trainer guide (Giáo án đứng lớp chi tiết)</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Worksheet & Tài liệu phát tay cho học viên</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Activity, discussion prompt & case exercise</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Bài đánh giá năng lực (Assessment) Trước - Sau học</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Feedback Rehearsal tối ưu hóa cách truyền đạt</span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-8 h-8 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="txt-3 text-gray-800 text-lg">Checklist vận hành và Khung đo lường hiệu quả</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fit" class="py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                    <div class="glass-card bg-yellow-50/50 p-10 border-yellow-200" data-aos="fade-right">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="bg-green-100 p-3 rounded-xl">
+                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <h3 class="text-3xl font-black text-gray-900">Rất Phù Hợp Nếu:</h3>
+                        </div>
+                        <ul class="space-y-5">
+                            <li class="txt-3 text-gray-700 flex items-start gap-3">
+                                <span class="text-yellow-600 mt-1">•</span> Chuyên gia muốn đóng gói kinh nghiệm thành chương trình đào tạo.
+                            </li>
+                            <li class="txt-3 text-gray-700 flex items-start gap-3">
+                                <span class="text-yellow-600 mt-1">•</span> Coach / consultant muốn có sản phẩm tri thức bài bản hơn.
+                            </li>
+                            <li class="txt-3 text-gray-700 flex items-start gap-3">
+                                <span class="text-yellow-600 mt-1">•</span> Trainer nội bộ cần chuẩn hóa chương trình đào tạo.
+                            </li>
+                            <li class="txt-3 text-gray-700 flex items-start gap-3">
+                                <span class="text-yellow-600 mt-1">•</span> Founder / manager muốn xây academy, onboarding hoặc training system.
+                            </li>
+                            <li class="txt-3 text-gray-700 flex items-start gap-3">
+                                <span class="text-yellow-600 mt-1">•</span> Tổ chức đã có chuyên môn nhưng nội dung đào tạo còn rời rạc.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card bg-gray-50 p-10 border-gray-200" data-aos="fade-left">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="bg-red-100 p-3 rounded-xl">
+                                <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </div>
+                            <h3 class="text-3xl font-black text-gray-900">Không Phù Hợp Nếu:</h3>
+                        </div>
+                        <ul class="space-y-5">
+                            <li class="txt-3 text-gray-500 flex items-start gap-3">
+                                <span class="text-gray-400 mt-1">✕</span> Chưa có chuyên môn hoặc kinh nghiệm thực tế trong lĩnh vực.
+                            </li>
+                            <li class="txt-3 text-gray-500 flex items-start gap-3">
+                                <span class="text-gray-400 mt-1">✕</span> Chỉ muốn làm "slide đẹp" mà không muốn đầu tư vào cấu trúc học tập.
+                            </li>
+                            <li class="txt-3 text-gray-500 flex items-start gap-3">
+                                <span class="text-gray-400 mt-1">✕</span> Muốn một khóa học đại trà làm thật nhanh, không cần kiểm chứng nhu cầu.
+                            </li>
+                            <li class="txt-3 text-gray-500 flex items-start gap-3">
+                                <span class="text-gray-400 mt-1">✕</span> Không có thời gian phản hồi, rehearsal hoặc cùng thảo luận chỉnh sửa chương trình.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="py-24 bg-white relative z-10 border-y border-gray-100">
+            <div class="container mx-auto px-6">
+                <p class="text-center txt-2 tracking-widest text-gray-400 uppercase mb-12">Các tổ chức & doanh nghiệp đã đồng hành</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-14">
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center justify-center h-28 md:h-40 w-48 md:w-72 grayscale hover:grayscale-0 transition-all duration-500 opacity-70 hover:opacity-100">
+                        <img src="https://static.ladipage.net/6102863883047e0020eb7225/avatar-20220214102930.png" alt="PMAX Academy" class="max-h-full max-w-full object-contain scale-110">
+                    </div>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center justify-center h-28 md:h-40 w-48 md:w-72 grayscale hover:grayscale-0 transition-all duration-500 opacity-70 hover:opacity-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR65beg_v_qDIlUmIBme5o1wBwKa-0D_4rfQ&s" alt="Bach Khoa Education" class="max-h-full max-w-full object-contain scale-110">
+                    </div>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-200 flex items-center justify-center h-28 md:h-40 w-48 md:w-72 grayscale hover:grayscale-0 transition-all duration-500 opacity-70 hover:opacity-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjl-04xTLea_g0uI4orUF-dSitC4_2wN3hCQ&s" alt="TIS The International School" class="max-h-full max-w-full object-contain rounded-lg scale-110">
+                    </div>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center justify-center h-28 md:h-40 w-48 md:w-72 grayscale hover:grayscale-0 transition-all duration-500 opacity-70 hover:opacity-100">
+                        <img src="https://pmax.com.vn/wp-content/uploads/2025/08/OG-image-scaled.png" alt="PMax Total Marketing Partner" class="max-h-full max-w-full object-contain scale-110">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="offers" class="py-28 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div data-aos="fade-up" class="flex flex-col items-center justify-center text-center w-full">
+                    <h2 class="text-4xl md:text-5xl lg:text-[4.5rem] font-black text-gray-900 text-center w-full mb-6 tracking-tight leading-[1.3]">Gói Dịch Vụ <span class="gradient-text">Đồng Hành</span></h2>
+                    <p class="section-subtitle w-full max-w-4xl">Chọn lộ trình phù hợp với mục tiêu và quy mô sản phẩm đào tạo của bạn.</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto mt-16 items-stretch">
+                    <div class="glass-card p-10 flex flex-col glow-on-hover bg-white" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="txt-2 text-gray-900">Course Blueprint Sprint</h3>
+                        <p class="txt-3 text-gray-500 font-bold uppercase tracking-widest mt-1">Dành cho nội dung thô</p>
+                        <div class="my-8 pb-8 border-b border-gray-100">
+                            <p class="txt-3 font-bold text-gray-800 mb-1">Thời gian: 4 Tuần</p>
+                            <p class="text-4xl font-black text-black">20 Triệu <span class="text-xl font-bold text-gray-500">VNĐ</span></p>
+                        </div>
+                        <ul class="space-y-4 text-gray-800 flex-grow mb-10">
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Phân tích nhu cầu học viên</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Khung chương trình tổng thể</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Outline từng module & Learning objectives</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Flow bài học & Checklist tài sản cần xây</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Feedback một vòng cho slide/giáo trình hiện có</li>
+                        </ul>
+                        <div class="mt-auto pt-6 text-center text-sm text-gray-500 italic mb-4">
+                            * Phù hợp nếu bạn cần khung chương trình rõ trước khi tự sản xuất tài liệu.
+                        </div>
+                        <a href="#contact" class="block w-full text-center bg-gray-900 text-white txt-3 font-bold py-4 rounded-2xl hover:bg-gray-800 transition-colors">TƯ VẤN GÓI NÀY</a>
+                    </div>
+                    
+                    <div class="glass-card p-10 flex flex-col border-2 border-yellow-400 shadow-2xl relative glow-on-hover scale-105 z-10 bg-white" data-aos="fade-up" data-aos-delay="200">
+                        <span class="absolute top-0 -translate-y-1/2 bg-yellow-400 text-black txt-3 font-bold px-6 py-2 rounded-full left-1/2 -translate-x-1/2 tracking-widest uppercase">Khuyến nghị cho đa số</span>
+                        <h3 class="txt-2 text-yellow-600">Training Program Builder</h3>
+                        <p class="txt-3 text-gray-600 font-bold uppercase tracking-widest mt-1">Đóng gói hoàn chỉnh</p>
+                        <div class="my-8 pb-8 border-b border-gray-100">
+                            <p class="txt-3 font-bold text-gray-800 mb-1">Thời gian: 8 Tuần</p>
+                            <p class="text-4xl font-black text-black">45 Triệu <span class="text-xl font-bold text-gray-500">VNĐ</span></p>
+                        </div>
+                        <ul class="space-y-4 text-gray-900 flex-grow mb-10">
+                            <li class="flex items-start gap-3 txt-3 font-bold"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Tất cả trong gói Blueprint</li>
+                            <li class="flex items-start gap-3 txt-3 font-bold"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Thiết kế Slide đào tạo chuyên nghiệp</li>
+                            <li class="flex items-start gap-3 txt-3 font-bold"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Trainer guide / Giáo án đứng lớp</li>
+                            <li class="flex items-start gap-3 txt-3 font-bold"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Worksheet / Handout cho học viên</li>
+                            <li class="flex items-start gap-3 txt-3 font-bold"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Activity & Case exercise thực chiến</li>
+                            <li class="flex items-start gap-3 txt-3 font-bold"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Assessment trước - sau học</li>
+                            <li class="flex items-start gap-3 txt-3 font-bold"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>1–2 buổi Rehearsal feedback & Checklist vận hành</li>
+                        </ul>
+                        <div class="mt-auto pt-6 text-center text-sm text-gray-500 italic mb-4">
+                            * Dành cho chuyên gia muốn có chương trình đào tạo hoàn chỉnh để bán hoặc triển khai ngay.
+                        </div>
+                        <a href="#contact" class="block w-full text-center bg-yellow-400 text-black txt-3 font-bold py-4 rounded-2xl hover:bg-yellow-500 transition-all shadow-lg">TƯ VẤN GÓI NÀY</a>
+                    </div>
+                    
+                    <div class="glass-card p-10 flex flex-col glow-on-hover bg-white" data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="txt-2 text-gray-900">Training Business System</h3>
+                        <p class="txt-3 text-gray-500 font-bold uppercase tracking-widest mt-1">Xây dựng hệ sinh thái</p>
+                        <div class="my-8 pb-8 border-b border-gray-100">
+                            <p class="txt-3 font-bold text-gray-800 mb-1">Thời gian: 12-16 Tuần</p>
+                            <p class="text-4xl font-black text-black">60 Triệu <span class="text-xl font-bold text-gray-500">VNĐ</span></p>
+                        </div>
+                        <ul class="space-y-4 text-gray-800 flex-grow mb-10">
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Tất cả trong gói Program Builder</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Chiến lược Product Ladder</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Tư vấn mô hình offer đào tạo</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Thiết kế Learning Path nhiều cấp độ</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Setup quy trình onboarding học viên & Automation cơ bản</li>
+                            <li class="flex items-start gap-3 txt-3"><svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Khung đo lường & tư vấn cải tiến sau triển khai</li>
+                        </ul>
+                        <div class="mt-auto pt-6 text-center text-sm text-gray-500 italic mb-4">
+                            * Dành cho người muốn xây không chỉ một khóa học, mà một hệ sinh thái đào tạo.
+                        </div>
+                        <a href="#contact" class="block w-full text-center bg-gray-900 text-white txt-3 font-bold py-4 rounded-2xl hover:bg-gray-800 transition-colors">TƯ VẤN GÓI NÀY</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-28 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-6">
+                <div data-aos="fade-up">
+                    <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 text-center mb-8 tracking-tighter">Đặt buổi chẩn đoán <span class="gradient-text">30 phút</span></h2>
+                    <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center max-w-4xl mx-auto mb-16 leading-relaxed">Quét mã Zalo bên dưới để chúng ta có một buổi trò chuyện, tư vấn 1:1 về định hướng đóng gói kiến thức của bạn.</p>
+                </div>
+                
+                <div class="max-w-sm mx-auto glass-card bg-white p-6 border border-gray-200 mt-12 text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-6 flex justify-center p-4">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://zalo.me/0989355842" alt="Zalo QR Code" class="w-full h-auto object-cover">
+                    </div>
+                    <a href="https://zalo.me/0989355842" target="_blank" class="inline-block w-full bg-[#0068FF] text-white font-bold py-4 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all txt-3">
+                        MỞ ZALO KẾT BẠN NGAY
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-28 bg-gray-50 border-t border-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="bg-gradient-to-br from-gray-900 to-black rounded-[3rem] p-10 md:p-16 border border-gray-800 relative overflow-hidden group shadow-2xl">
+                    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-yellow-400/10 blur-[100px] group-hover:bg-yellow-400/20 transition-all duration-700"></div>
+                    <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 relative z-10">
+                        <div class="relative w-56 h-56 md:w-64 md:h-64 flex-shrink-0 mx-auto lg:mx-0" data-aos="zoom-in">
+                            <div class="absolute inset-0 rounded-full border-2 border-yellow-400/30 border-dashed animate-[spin_10s_linear_infinite]"></div>
+                            <div class="absolute -inset-2 rounded-full border border-gray-700 animate-[spin_15s_linear_infinite_reverse]"></div>
+                            <div class="absolute inset-3 rounded-full overflow-hidden border-4 border-yellow-500 shadow-2xl bg-gray-900">
+                                <img src="https://i.ibb.co/qMnhcVMX/Harry-Nhan.png" alt="Tô Thành Nhân" class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-110">
+                            </div>
+                        </div>
+                        <div data-aos="fade-left" class="text-center lg:text-left">
+                            <span class="inline-block px-5 py-2 mb-4 txt-3 font-bold text-black bg-yellow-400 rounded-full tracking-widest">FOUNDER & LEAD COACH</span>
+                            <h2 class="txt-1 text-white mb-4">Tô Thành Nhân</h2>
+                            <p class="txt-2 text-yellow-400 mb-10 italic">"Biến kho tài nguyên của bạn thành tài sản số"</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-8 mb-10 text-gray-300">
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-10 bg-yellow-500 rounded-full"></div>
+                                        <p class="txt-3">Academy Manager cum L&D Lead PMax - Total Performance Marketing</p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-10 bg-gray-600 rounded-full"></div>
+                                        <p class="txt-3">Ex - HR Manager Bach Khoa Education</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-3 txt-3 text-gray-400">
+                                    <p>• Instructional Design Certificated</p>
+                                    <p>• Chứng nhận quốc tế về L&D - ATD Certificated</p>
+                                    <p>• Hơn 10+ khóa học đã được đóng gói</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-8 pt-8 border-t border-gray-800">
+                                <a href="https://www.linkedin.com/in/to-thanh-nhan/" target="_blank" class="flex items-center gap-3 text-white hover:text-yellow-400 transition-all txt-2 font-bold">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                    LinkedIn
+                                </a>
+                                <div class="flex items-center gap-3 text-white txt-2 font-bold">
+                                    <div class="bg-yellow-500/20 p-2 rounded-xl">
+                                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                        </svg>
+                                    </div>
+                                    0989 355 842
+                                </div>
+                                <div class="flex items-center gap-3 text-white txt-2 font-bold">
+                                    <div class="bg-yellow-500/20 p-2 rounded-xl">
+                                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    nhan.to.5495@gmail.com
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black py-12 border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <a href="#" class="txt-2 font-black text-white tracking-tighter uppercase">
+                        TRAINING <span class="text-yellow-500">COACH</span>
+                    </a>
+                    <p class="mt-2 text-gray-400 txt-3">Đồng hành đóng gói khóa học chuyên sâu.</p>
+                </div>
+                <div class="flex flex-col items-center md:items-end gap-1 text-gray-500">
+                    <p class="txt-3 font-bold text-gray-400">&copy; 2024 Training Design Coach. All Rights Reserved.</p>
+                    <p class="txt-3 text-sm">Developed by Tô Thành Nhân</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, easing: 'ease-out-cubic' });
+
+        // Mobile menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-white/95', 'shadow-md');
+            } else {
+                header.classList.remove('bg-white/95', 'shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
